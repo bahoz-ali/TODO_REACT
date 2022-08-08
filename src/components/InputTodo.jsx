@@ -20,7 +20,7 @@ export default class InputTodo extends Component {
       });
     } else {
       alert('Please write item');
-    }
+    } 
   };
 
   render() {
@@ -28,15 +28,16 @@ export default class InputTodo extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form-container">
           <input
+          className="input-text"
             type="text"
             placeholder="Add Todo..."
             name="title"
             value={title}
             onChange={this.onChange}
           />
-          <button>Submit</button>
+          <button className="input-submit">Submit</button>
         </form>
       </div>
     );
