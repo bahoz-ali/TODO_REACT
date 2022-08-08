@@ -6,6 +6,7 @@ const TodoItem = (props) => {
   const [editing, setEditing] = useState(false);
 
   const { id, title, completed } = props.todo;
+  const { handleChangeProps, deleteTodoProps, setUpdate } = props;
 
   const completedStyle = {
     fontStyle: 'italic',
@@ -27,6 +28,12 @@ const TodoItem = (props) => {
     editMode.display = 'none';
   }
 
+  const handleUpdatedDone = (event) => {
+    if (event.key === 'Enter') {
+      setEditing(false)
+    }
+  };
+
   return (
     <li key={id} className={styles.item}>
       <div onDoubleClick={handleEditing} style={viewMode}>
@@ -35,15 +42,24 @@ const TodoItem = (props) => {
           className={styles.checkbox}
           checked={completed}
           onChange={() => {
-            props.handleChangeProps(id);
+            handleChangeProps(id);
           }}
         />
 
-        <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
+        <button onClick={() => deleteTodoProps(id)}>Delete</button>
         <span style={completed ? completedStyle : null}>{title}</span>
       </div>
 
-      <input style={editMode} type="text" className={styles.textInput} value={title} />
+      <input
+        style={editMode}
+        type="text"
+        className={styles.textInput}
+        value={title}
+        onChange={(e) => {
+          setUpdate(e.target.value, id);
+        }}
+        onKeyDown={handleUpdatedDone}
+      />
     </li>
   );
 };

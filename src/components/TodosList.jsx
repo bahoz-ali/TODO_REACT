@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 
 export default class TodosList extends Component {
   render() {
-    const { handleChangeProps, deleteTodoProps } = this.props;
+    const { handleChangeProps, deleteTodoProps, setUpdate } = this.props;
 
     return (
       <div>
@@ -14,6 +14,7 @@ export default class TodosList extends Component {
               todo={todo}
               deleteTodoProps={deleteTodoProps}
               handleChangeProps={handleChangeProps}
+              setUpdate={setUpdate}
             />
           ))}
         </ul>
